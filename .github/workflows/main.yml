@@ -8,7 +8,7 @@ on:
 
     branches:
 
-      - staging
+      - main
  
 jobs:
 
@@ -76,7 +76,7 @@ jobs:
  
       - name: Build Docker image
 
-        run: docker build -t kamaldocker1/staging.stobay.ai:latest .
+        run: docker build -t kalaiannam/staging.stobay.ai:latest .
  
       - name: Login to Docker Hub
 
@@ -86,7 +86,7 @@ jobs:
  
       - name: Push Docker Image
 
-        run: docker push kamaldocker1/staging.stobay.ai:latest
+        run: docker push kalaiannam/staging.stobay.ai:latest
  
       - name: Stop old container
 
@@ -100,7 +100,7 @@ jobs:
 
         run: |
 
-          docker run -d -p 8080:80 --name web-stobay kamaldocker1/staging.stobay.ai:latest
+          docker run -d -p 6009:6009 --name web-stobay kalaiannam/staging.stobay.ai:latest
  
       - name: Wait for container
 
@@ -118,7 +118,7 @@ jobs:
  
             for i in {1..10}; do
 
-              if curl -s http://localhost:8080 > /dev/null; then
+              if curl -s http://localhost:6009 > /dev/null; then
 
                 echo "✅ App responding"
 
@@ -188,7 +188,7 @@ jobs:
 
           🖥 *Container:* ✅ Running
 
-          🌐 *Port:* 8080
+          🌐 *Port:* 6009
  
           ━━━━━━━━━━━━━━━
 
